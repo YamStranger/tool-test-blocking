@@ -1,0 +1,1 @@
+C:\Java\jdk8.5\bin\java.exe -Dwebdriver.chrome.driver=chrome-web-driver\chromedriver.exe -Dfile.encoding=UTF-8  -cp "lib\*;build\lib\*" tool.test.blocking.Testing -threads=140 -url=www.zawya.com -hub=http://yamstranger14.cloudapp.net:4444/wd/hub;http://yamstranger13.cloudapp.net:4444/wd/hub

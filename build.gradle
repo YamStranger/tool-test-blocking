@@ -56,6 +56,24 @@ repositories {
 }
 
 dependencies {
+   compile('org.testng:testng:6.8.21:sources')
+   compile('org.testng:testng:6.8.21')
+   compile('org.mockito:mockito-core:2.0.5-beta')
+   compile('org.mockito:mockito-core:2.0.5-beta:sources')
+   compile('ch.qos.logback:logback-classic:1.1.3:sources')
+   compile('ch.qos.logback:logback-classic:1.1.3')
+   compile('ch.qos.logback:logback-core:1.1.3')
+   compile('org.slf4j:slf4j-api:1.7.12')
+   compile('org.codehaus.janino:janino-parent:2.7.8')
+   compile('org.codehaus.janino:janino:2.7.8')
+   
+   compile('com.opencsv:opencsv:3.3:sources')
+   compile('com.opencsv:opencsv:3.3')
+   compile('org.seleniumhq.selenium:selenium-java:2.45.0')
+   compile('org.seleniumhq.selenium:selenium-parent:2.45.0')
+   compile('org.seleniumhq.selenium:selenium-server:2.45.0')
+   compile project(':repos/utils')
+   compile project(':repos/selenium-utils')
 }
 
 test {
@@ -71,14 +89,14 @@ task copyDeps(type: Copy) {
 }
 
 compileJava {
-	dependsOn ('create-dirs','utils','selenium_utils')
+	dependsOn ('copyDeps','create-dirs','utils','selenium_utils')
 }
 
 jar {
     manifest {
         attributes 'Implementation-Title': 'tool-test-blocking',
                    'Implementation-Version': version,
-				   'Main-Class': 'com.Main'
+				   'Main-Class': 'tool.test.blocking.Testing'
 				    //attributes(
 					//    'Class-Path': configurations.compile.collect { it.getName() }.join(' '))
     }
@@ -90,7 +108,7 @@ task buildAllInOne(type: Jar) {
 	manifest {
         attributes 'Implementation-Title': 'tool-test-blocking',
         	'Implementation-Version': version,
-        	'Main-Class': 'com.Main'
+        	'Main-Class': 'tool.test.blocking.Testing'
     }
     baseName = project.name + '-all'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
